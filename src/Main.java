@@ -14,8 +14,27 @@ public class Main {
         //pay by PayPal
         cart.pay(new Paypal("221240@astanait.edu.kz", "01530153"));
 
-        //pay by credit card
+        //pay by Credit Card
         cart.pay(new CreditCard("Orazaly Makambet", "0153015301530153", "667", "12/15"));
+
+        //pay by Cash
+        cart.pay(new Cash(25960));
+
+        ILiquid basicLiquid = new BasicVapeLiquid();
+        System.out.println(basicLiquid.getDescription());
+        System.out.println("Price: ₸" + basicLiquid.getPrice());
+
+        ILiquid lowNicotineLiquid = new LowNicotineVapeLiquid(basicLiquid);
+        System.out.println(lowNicotineLiquid.getDescription());
+        System.out.println("Price: ₸" + lowNicotineLiquid.getPrice());
+
+        ILiquid mediumNicotineLiquid = new MediumNicotineVapeLiquid(basicLiquid);
+        System.out.println(mediumNicotineLiquid.getDescription());
+        System.out.println("Price: ₸" + mediumNicotineLiquid.getPrice());
+
+        ILiquid highNicotineLiquid = new HighNicotineVapeLiquid(basicLiquid);
+        System.out.println(highNicotineLiquid.getDescription());
+        System.out.println("Price: ₸" + highNicotineLiquid.getPrice());
 
     }
 }
