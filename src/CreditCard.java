@@ -4,7 +4,7 @@ public class CreditCard implements IPayment {
     private String cvv;
     private String dateOfExpiry;
 
-    public CreditCard(String nm, String ccNum, String cvv, String expiryDate){
+    public void CreditCard(String nm, String ccNum, String cvv, String expiryDate){
         this.name=nm;
         this.cardNumber=ccNum;
         this.cvv=cvv;
@@ -14,5 +14,10 @@ public class CreditCard implements IPayment {
     @Override
     public void pay(int amount) {
         System.out.println(amount +" paid with Credit Card");
+    }
+
+    @Override
+    public void pay() {
+
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Cart cart = new Cart();
@@ -10,7 +12,8 @@ public class Main {
         cart.addItem(item2);
         cart.addItem(item2);
         cart.addItem(item3);
-
+        System.out.println("Amount of money for pay is " + cart.calculateTotal());
+/*
         //pay by PayPal
         cart.pay(new Paypal("221240@astanait.edu.kz", "01530153"));
 
@@ -35,6 +38,36 @@ public class Main {
         ILiquid highNicotineLiquid = new HighNicotineVapeLiquid(basicLiquid);
         System.out.println(highNicotineLiquid.getDescription());
         System.out.println("Price: ₸" + highNicotineLiquid.getPrice());
+*/
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Please choose a payment method:");
+        System.out.println("1. PayPal");
+        System.out.println("2. Cash");
+        System.out.println("3. Credit Card");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        IPayment payment = null;
+
+        switch (choice) {
+            case 1:
+                payment = new PaymentAdapter(new Paypal());
+                break;
+            case 2:
+                payment = new PaymentAdapter(new Cash());
+                break;
+            case 3:
+                payment = new PaymentAdapter(new CreditCard());
+                break;
+            default:
+                System.out.println("Invalid choice");
+                break;
+        }
+
+        if (payment != null) {
+            payment.pay();
+        }
 
     }
 }

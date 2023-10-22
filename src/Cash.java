@@ -1,7 +1,7 @@
 public class Cash implements IPayment {
     private int money;
 
-    public Cash(int check) {
+    public void Cash(int check) {
         this.money = check;
     }
 
@@ -11,5 +11,10 @@ public class Cash implements IPayment {
         if (money == amount) {
             System.out.println(amount + " paid with Cash");
         }
+    }
+
+    @Override
+    public void pay() {
+
     }
 }

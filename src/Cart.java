@@ -23,8 +23,9 @@ public class Cart {
         return sum;
     }
 
-    public void pay(IPayment paymentMethod){
+    public int pay(IPayment paymentMethod){
         int amount = calculateTotal();
         paymentMethod.pay(amount);
+        return amount;
     }
 }
