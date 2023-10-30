@@ -1,6 +1,6 @@
 package Factory;
 
-class Ejuice implements VapeProduct {
+public class Ejuice implements VapeProduct {
     private String name;
     private double price;
 

@@ -2,6 +2,7 @@ import Factory.*;
 import Payment.*;
 import Observer.*;
 import Decorator.*;
+import Singleton.Sales;
 
 
 import java.util.List;
@@ -71,9 +72,20 @@ public class Main {
             if (payment != null) {
                 payment.pay();
                 System.out.println("Done! Thank you for buying");
+                Sales shop = Sales.getInstance("Ozzy's Vape Shop");
+
+                System.out.println("Shop Name: " + shop.getShopName());
+
+                VapeProduct product1 = new Ejuice("Dozol", 4990);
+                shop.sellProduct(product1, 1);
+                VapeProduct product2 = new Ejuice("Waka", 7990);
+                shop.sellProduct(product2, 2);
+                VapeProduct product3 = new Ejuice("ElfBar", 4990);
+                shop.sellProduct(product3, 1);
             }
         }
-
+    }
+}
 
 /*
         BitcoinExchangeRate = new BitcoinExchangeRate();
@@ -163,5 +175,4 @@ Cart cart = new Cart();
             System.out.println("Done! Thank you for buying");
         }
         */
-    }
-}
+
