@@ -1,10 +1,7 @@
 import Factory.*;
-import Payment.*;
-import Observer.*;
+import Strategy.*;
+import Singleton.*;
 import Decorator.*;
-import Singleton.Sales;
-
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,10 +60,32 @@ public class Main {
             IPayment payment = null;
 
             switch (choice) {
-                case 1 -> payment = new PaymentAdapter(new Paypal());
-                case 2 -> payment = new PaymentAdapter(new Cash());
-                case 3 -> payment = new PaymentAdapter(new CreditCard());
-                default -> System.out.println("Invalid choice");
+                case 1:
+                    System.out.print("Enter PayPal email: ");
+                    String email = scanner.next();
+                    System.out.print("Enter PayPal password: ");
+                    String password = scanner.next();
+                    payment = new Paypal(email, password);
+                    break;
+                case 2:
+                    System.out.print("Enter payment amount (cash): ₸");
+                    int check = scanner.nextInt();
+                    payment = new Cash(check);
+                    break;
+                case 3:
+                    System.out.print("Enter cardholder name: ");
+                    String name = scanner.next();
+                    System.out.print("Enter credit card number: ");
+                    String cardNumber = scanner.next();
+                    System.out.print("Enter credit card cvv: ");
+                    String cvv = scanner.next();
+                    System.out.print("Enter credit card expiry date: ");
+                    String expiryDate = scanner.next();
+                    payment = new CreditCard(name, cardNumber, cvv, expiryDate);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+                    break;
             }
 
             if (payment != null) {
