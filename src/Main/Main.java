@@ -1,7 +1,10 @@
+package Main;
+
 import Factory.*;
 import Strategy.*;
 import Singleton.*;
 import Decorator.*;
+import Adapter.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +72,6 @@ public class Main {
                     }
                 } while (choice != 4);
 
-                // Apply selected decorators to the base liquid
                 for (ILiquid decorator : selectedDecorators) {
                     vapeLiquid = decorator;
                 }
@@ -82,11 +84,13 @@ public class Main {
                 System.out.println("1. PayPal");
                 System.out.println("2. Cash");
                 System.out.println("3. Credit Card");
+                System.out.println("4. Promo Code");
                 int pay = scanner.nextInt();
                 IPayment payment = null;
 
                 switch (pay) {
                     case 1 -> {
+                        // Payment using PayPal
                         System.out.print("Enter PayPal email: ");
                         String email = scanner.next();
                         System.out.print("Enter PayPal password: ");
@@ -94,11 +98,13 @@ public class Main {
                         payment = new Paypal(email, password);
                     }
                     case 2 -> {
+                        // Payment using Cash
                         System.out.print("Enter payment amount (cash): ₸");
                         int check = scanner.nextInt();
                         payment = new Cash(check);
                     }
                     case 3 -> {
+                        // Payment using Credit Card
                         System.out.print("Enter cardholder name: ");
                         String name = scanner.next();
                         System.out.print("Enter credit card number: ");
@@ -108,6 +114,13 @@ public class Main {
                         System.out.print("Enter credit card expiry date: ");
                         String expiryDate = scanner.next();
                         payment = new CreditCard(name, cardNumber, cvv, expiryDate);
+                    }
+                    case 4 -> {
+                        System.out.print("Enter promo code: ");
+                        String promoCode = scanner.next();
+                        PromoCodePaymentMethod promoCodePaymentMethod = new PromoCodePaymentMethodImplementation();
+                        Cart cart = new Cart();
+                        payment = new PromoCodePaymentAdapter(promoCodePaymentMethod, promoCode, cart);
                     }
                     default -> System.out.println("Invalid choice");
                 }
@@ -130,7 +143,7 @@ public class Main {
                 cart.addItem(item3);
 
                 List<Item> itemsInCart = cart.getItems();
-                System.out.println("Items in Cart:");
+                System.out.println("Items in Main.Cart:");
                 for (Item item : itemsInCart) {
                     System.out.println(item.getUpcCode() + " " + item.getName() + " " + item.getPrice());
                 }
@@ -141,6 +154,7 @@ public class Main {
                 System.out.println("1. PayPal");
                 System.out.println("2. Cash");
                 System.out.println("3. Credit Card");
+                System.out.println("4. Promo Code");
                 int choice = scanner.nextInt();
                 IPayment payment = null;
 
@@ -167,6 +181,12 @@ public class Main {
                         System.out.print("Enter credit card expiry date: ");
                         String expiryDate = scanner.next();
                         payment = new CreditCard(name, cardNumber, cvv, expiryDate);
+                    }
+                    case 4 -> {
+                        System.out.print("Enter promo code: ");
+                        String promoCode = scanner.next();
+                        PromoCodePaymentMethod promoCodePaymentMethod = new PromoCodePaymentMethodImplementation();
+                        payment = new PromoCodePaymentAdapter(promoCodePaymentMethod, promoCode, cart);
                     }
                     default -> System.out.println("Invalid choice");
                 }
@@ -211,11 +231,11 @@ public class Main {
 
 
 
-Cart cart = new Cart();
+Main.Cart cart = new Main.Cart();
 
-        Item item1 = new Item("0153","Dozol",4990);
-        Item item2 = new Item("0153","Waka",7990);
-        Item item3 = new Item("0153","ElfBar",4990);
+        Main.Item item1 = new Main.Item("0153","Dozol",4990);
+        Main.Item item2 = new Main.Item("0153","Waka",7990);
+        Main.Item item3 = new Main.Item("0153","ElfBar",4990);
 
         cart.addItem(item1);
         cart.addItem(item2);

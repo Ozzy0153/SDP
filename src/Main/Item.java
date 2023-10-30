@@ -1,3 +1,5 @@
+package Main;
+
 public class Item {
     private String upcCode;
     private String pname;
