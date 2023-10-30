@@ -1,19 +1,37 @@
 package Observer;
 
-class VapeShop implements Observer {
-    private final String name;
-    private final double basePrice;
+import java.util.ArrayList;
+import java.util.List;
 
-    public VapeShop(String name, double basePrice) {
-        this.name = name;
-        this.basePrice = basePrice;
+public class VapeShop {
+    private String shopName;
+    private List<ShopObserver> observers = new ArrayList<>();
+
+    public VapeShop(String shopName) {
+        this.shopName = shopName;
     }
 
-    @Override
-    public void update(double newBitcoinExchangeRate) {
-        double priceChangePercentage = (newBitcoinExchangeRate - 29690.0) / 29690.0 * 100.0;
-        double priceChangeFactor = 1 + (priceChangePercentage / 100.0);
-        double newPrice = basePrice * priceChangeFactor;
-        System.out.println("Product: " + name + ", New Price: " + newPrice);
+    public void addObserver(ShopObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ShopObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(String message) {
+        for (ShopObserver observer : observers) {
+            observer.update(message);
+        }
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    // Add a method to notify about a new product
+    public void notifyNewProduct(String productName) {
+        String message = "New product added by admin: " + productName;
+        notifyObservers(message);
     }
 }

@@ -5,6 +5,7 @@ import Strategy.*;
 import Singleton.*;
 import Decorator.*;
 import Adapter.*;
+import Observer.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,11 @@ public class Main {
         System.out.println("Welcome to the Vape Shop!");
         System.out.println("Choose the user type (1 for Admin, 2 for Customer):");
         int user = scanner.nextInt();
+        ShopObserver customer = new Customer("Zhanka");
+        ShopObserver admin = new Admin("Yernur");
+        VapeShop shop = new VapeShop("Ozzy's Vape Shop");
+        shop.addObserver(customer);
+        shop.addObserver(admin);
         if (user == 1) {
             System.out.println("Hello, Ozzy!");
             System.out.println("Choose the product type (1 for Ejuice, 2 for Vape Device):");
@@ -32,10 +38,13 @@ public class Main {
 
             System.out.print("Enter the product name: ");
             String name = scanner.next();
-            System.out.print("Enter the product price: ₸ ");
+            System.out.print("Enter the product price: ₸");
             double price = scanner.nextDouble();
             VapeProduct product = factory.createProduct(name, price);
             System.out.println("Created Product: " + product.getName() + ", Price: ₸" + product.getPrice());
+
+            shop.notifyNewProduct(product.getName());
+
             scanner.close();
         } else if (user == 2) {
             System.out.println("Choose the product type (1 for Vape Liquid, 2 for Vape Products):");
@@ -194,16 +203,16 @@ public class Main {
                 if (payment != null) {
                     payment.pay();
                     System.out.println("Done! Thank you for buying");
-                    Sales shop = Sales.getInstance("Ozzy's Vape Shop");
+                    Sales shops = Sales.getInstance("Ozzy's Vape Shop");
 
                     System.out.println("Shop Name: " + shop.getShopName());
 
                     VapeProduct product1 = new Ejuice("Dozol", 4990);
-                    shop.sellProduct(product1, 1);
+                    shops.sellProduct(product1, 1);
                     VapeProduct product2 = new Ejuice("Waka", 7990);
-                    shop.sellProduct(product2, 2);
+                    shops.sellProduct(product2, 2);
                     VapeProduct product3 = new Ejuice("ElfBar", 4990);
-                    shop.sellProduct(product3, 1);
+                    shops.sellProduct(product3, 1);
 
                 }
             }
@@ -211,92 +220,4 @@ public class Main {
     }
 }
 
-/*
-        BitcoinExchangeRate = new BitcoinExchangeRate();
-
-        // Create vape products and register them as observers
-        VapeShop product1 = new VapeShop("ElfBar", 5000.0);
-        VapeShop product2 = new VapeShop("Waka", 7500.0);
-
-        bitcoinExchangeRate.registerObserver(product1);
-        bitcoinExchangeRate.registerObserver(product2);
-
-        // Set the initial Bitcoin exchange rate
-        double initialBitcoinExchangeRate = 29690.0;
-        bitcoinExchangeRate.setRate(initialBitcoinExchangeRate);
-
-        // Simulate a change in the Bitcoin exchange rate
-        double newBitcoinExchangeRate = 34000.0;
-        bitcoinExchangeRate.setRate(newBitcoinExchangeRate);
-
-
-
-Main.Cart cart = new Main.Cart();
-
-        Main.Item item1 = new Main.Item("0153","Dozol",4990);
-        Main.Item item2 = new Main.Item("0153","Waka",7990);
-        Main.Item item3 = new Main.Item("0153","ElfBar",4990);
-
-        cart.addItem(item1);
-        cart.addItem(item2);
-        cart.addItem(item2);
-        cart.addItem(item3);
-        System.out.println("Amount of money for pay is " + cart.calculateTotal());
-
-        //pay by PayPal
-        cart.pay(new Payment.Paypal("221240@astanait.edu.kz", "01530153"));
-
-        //pay by Credit Card
-        cart.pay(new Payment.CreditCard("Orazaly Makambet", "0153015301530153", "667", "12/15"));
-
-        //pay by Payment.Cash
-        cart.pay(new Payment.Cash(25960));
-
-        Decorator.ILiquid basicLiquid = new Decorator.BasicVapeLiquid();
-        System.out.println(basicLiquid.getDescription());
-        System.out.println("Price: ₸" + basicLiquid.getPrice());
-
-        Decorator.ILiquid lowNicotineLiquid = new Decorator.LowNicotineVapeLiquid(basicLiquid);
-        System.out.println(lowNicotineLiquid.getDescription());
-        System.out.println("Price: ₸" + lowNicotineLiquid.getPrice());
-
-        Decorator.ILiquid mediumNicotineLiquid = new Decorator.MediumNicotineVapeLiquid(basicLiquid);
-        System.out.println(mediumNicotineLiquid.getDescription());
-        System.out.println("Price: ₸" + mediumNicotineLiquid.getPrice());
-
-        Decorator.ILiquid highNicotineLiquid = new Decorator.HighNicotineVapeLiquid(basicLiquid);
-        System.out.println(highNicotineLiquid.getDescription());
-        System.out.println("Price: ₸" + highNicotineLiquid.getPrice());
-
-     Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Please choose a payment method:");
-        System.out.println("1. PayPal");
-        System.out.println("2. Payment.Cash");
-        System.out.println("3. Credit Card");
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
-
-        IPayment payment = null;
-
-        switch (choice) {
-            case 1:
-                payment = new PaymentAdapter(new Paypal());
-                break;
-            case 2:
-                payment = new PaymentAdapter(new Cash());
-                break;
-            case 3:
-                payment = new PaymentAdapter(new CreditCard());
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-        }
-
-        if (payment != null) {
-            payment.pay();
-            System.out.println("Done! Thank you for buying");
-        }
-        */
 
