@@ -15,6 +15,10 @@ public class Cart {
         this.items.remove(item);
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public int calculateTotal(){
         int sum = 0;
         for(Item item : items){
@@ -22,10 +26,11 @@ public class Cart {
         }
         return sum;
     }
-
-    public int pay(IPayment paymentMethod){
+/*
+    public int pay(Payment.IPayment paymentMethod){
         int amount = calculateTotal();
         paymentMethod.pay(amount);
         return amount;
     }
+    */
 }

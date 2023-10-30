@@ -10,6 +10,11 @@ public class Item {
         this.price=cost;
     }
 
+    public String getName() {
+        return pname;
+    }
+
+
     public String getUpcCode() {
         return upcCode;
     }
