@@ -9,6 +9,6 @@ public class Cash implements IPayment {
 
     @Override
     public void pay() {
-        System.out.println("Paid with Cash: $" + money);
+        System.out.println("Paid with Cash: ₸" + money);
     }
 }

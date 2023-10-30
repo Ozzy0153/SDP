@@ -15,6 +15,6 @@ public class CreditCard implements IPayment {
 
     @Override
     public void pay() {
-        System.out.println("Paid with Credit Card");
+        System.out.println("Paid with Credit Card " + name);
     }
 }
