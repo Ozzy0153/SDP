@@ -6,7 +6,6 @@ public class Sales {
     private static Sales instance;
     private final String shopName;
 
-    // Private constructor to prevent external instantiation.
     private Sales(String shopName) {
         this.shopName = shopName;
     }

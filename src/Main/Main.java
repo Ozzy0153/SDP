@@ -99,7 +99,6 @@ public class Main {
 
                 switch (pay) {
                     case 1 -> {
-                        // Payment using PayPal
                         System.out.print("Enter PayPal email: ");
                         String email = scanner.next();
                         System.out.print("Enter PayPal password: ");
@@ -107,13 +106,11 @@ public class Main {
                         payment = new Paypal(email, password);
                     }
                     case 2 -> {
-                        // Payment using Cash
                         System.out.print("Enter payment amount (cash): ₸");
                         int check = scanner.nextInt();
                         payment = new Cash(check);
                     }
                     case 3 -> {
-                        // Payment using Credit Card
                         System.out.print("Enter cardholder name: ");
                         String name = scanner.next();
                         System.out.print("Enter credit card number: ");

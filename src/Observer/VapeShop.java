@@ -29,7 +29,7 @@ public class VapeShop {
         return shopName;
     }
 
-    // Add a method to notify about a new product
+
     public void notifyNewProduct(String productName) {
         String message = "New product added by admin: " + productName;
         notifyObservers(message);

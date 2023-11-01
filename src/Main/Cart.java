@@ -28,11 +28,5 @@ public class Cart {
         }
         return sum;
     }
-/*
-    public int pay(Payment.IPayment paymentMethod){
-        int amount = calculateTotal();
-        paymentMethod.pay(amount);
-        return amount;
-    }
-    */
+
 }
