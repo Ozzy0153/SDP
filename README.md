@@ -1,5 +1,4 @@
 # Vape Shop
-***
 ## Table of Contents:
 1. Introduction
 2. Project Overview
@@ -12,12 +11,13 @@
    * Singleton Pattern
    * Strategy Pattern
 5. Conclusion
+6. UML Diagram
 ***
 ## 1. Introduction:
-#### Welcome to the documentation for the Vape Shop project. This document provides an overview of the Vape Shop system, explaining how it works and detailing the design patterns used in its implementation.
+Welcome to the documentation for the Vape Shop project. This document provides an overview of the Vape Shop system, explaining how it works and detailing the design patterns used in its implementation.
 ***
 ## 2. Project Overview:
-#### The Vape Shop project is a console e-commerce system for selling vape products. It allows customers to browse and purchase different types of vape products, such as e-liquids (ejuice) and vape devices, in a user-friendly manner. The project incorporates several design patterns to enhance its functionality and maintainability. In addition, this project has opportunity for admins to add new products and notify customers and other admins about new products.
+The Vape Shop project is a console e-commerce system for selling vape products. It allows customers to browse and purchase different types of vape products, such as e-liquids (ejuice) and vape devices, in a user-friendly manner. The project incorporates several design patterns to enhance its functionality and maintainability. In addition, this project has opportunity for admins to add new products and notify customers and other admins about new products.
 ***
 ## 3. Project Structure:
 #### The project is organized into different packages, each serving a specific purpose:
@@ -50,4 +50,10 @@
 * __Implementation:__ The IPayment interface defines the pay method, which is implemented by different payment methods such as Paypal, Cash, and CreditCard. The PaymentAdapter class adapts these methods to the common interface.
 ***
 ## 5. Conclusion
-#### The Vape Shop project is designed as an efficient and extendable e-commerce platform for vape products. It employs several design patterns to enhance its functionality, maintainability, and flexibility. The Observer Pattern notifies users and admins of shop changes, the Factory Pattern handles product creation, the Adapter Pattern adapts payment methods, the Decorator Pattern enhances vape liquids, the Singleton Pattern manages sales, and the Strategy Pattern handles various payment methods. This modular and pattern-based architecture ensures that the project can easily adapt to future requirements and remain maintainable and scalable.
+The Vape Shop project is designed as an efficient and extendable e-commerce platform for vape products. It employs several design patterns to enhance its functionality, maintainability, and flexibility. The Observer Pattern notifies users and admins of shop changes, the Factory Pattern handles product creation, the Adapter Pattern adapts payment methods, the Decorator Pattern enhances vape liquids, the Singleton Pattern manages sales, and the Strategy Pattern handles various payment methods. This modular and pattern-based architecture ensures that the project can easily adapt to future requirements and remain maintainable and scalable.
+***
+## 6. UML Diagram
+![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
+> https://drive.google.com/file/d/1m3uFaNb7C5aZvQZrEMz1E3c7q1tG7Ux1/view?usp=sharing
